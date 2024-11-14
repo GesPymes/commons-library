@@ -1,4 +1,4 @@
-package com.gespyme.authenticator.auth.model;
+package com.gespyme.commons.model.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
