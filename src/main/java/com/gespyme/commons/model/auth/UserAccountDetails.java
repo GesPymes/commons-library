@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @AllArgsConstructor
 public class UserAccountDetails {
-    private String email;
-    private String password;
-    private Role role;
-    private LocalDateTime lastTimeLoggedIn;
-    private LocalDateTime creationDate;
-    private LocalDateTime lastModificationDate;
+  private String email;
+  private String password;
+  private Role role;
+  private LocalDateTime lastTimeLoggedIn;
+  private LocalDateTime creationDate;
+  private LocalDateTime lastModificationDate;
 }

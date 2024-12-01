@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class SearchCriteria {
-    public String key;
-    public SearchOperation operation;
-    public Object value;
+  public String key;
+  public SearchOperation operation;
+  public Object value;
 }

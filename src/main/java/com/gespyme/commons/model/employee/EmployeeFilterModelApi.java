@@ -1,4 +1,4 @@
-package com.gespyme.commons.model.customer;
+package com.gespyme.commons.model.employee;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,20 +13,22 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @NoArgsConstructor
-public class CustomerFilterModelApi extends CustomerBaseModelApi {
-  public CustomerFilterModelApi(
+public class EmployeeFilterModelApi extends EmployeeBaseModelApi {
+
+  public EmployeeFilterModelApi(
       String name,
       String lastName,
+      String email,
       String address,
       String mobilePhone,
-      String email,
-      Boolean needsInvoice) {
-    super(name, lastName, address, mobilePhone, email, needsInvoice);
+      String idNumber,
+      String socialSecurityNumber) {
+    super(name, lastName, email, address, mobilePhone, idNumber, socialSecurityNumber);
   }
 
   @JsonIgnore
   @Override
   public String getId() {
-    throw new BadRequestException("Cannot filter by customer id from this endpoint");
+    throw new BadRequestException("Cannot filter by employee id from this endpoint");
   }
 }

@@ -1,47 +1,63 @@
 package com.gespyme.commons.model.invoice;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.gespyme.commons.validator.Validable;
-import lombok.Data;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-public class InvoiceDataModelApi implements Validable {
-    private String invoiceDataId;
-    private String appointmentId;
-    private Integer subtotalAmount;
-    private Integer taxRate;
-    private Integer totalAmount;
-    private String customerName;
-    private String description;
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
+@NoArgsConstructor
+public class InvoiceDataModelApi extends InvoiceDataBaseModelApi {
 
-    @Override
-    public Map<String, Object> allParamsMap() {
-        Map<String, Object> params = new HashMap<>();
-        params.put("invoiceDataId", this.invoiceDataId);
-        params.put("appointmentId", this.appointmentId);
-        params.put("subtotalAmount", this.subtotalAmount);
-        params.put("taxRate", this.taxRate);
-        params.put("totalAmount", this.totalAmount);
-        params.put("customerName", this.customerName);
-        params.put("description", this.description);
-        return params;
-    }
+  @JsonProperty("invoiceDataId")
+  private String invoiceDataId;
 
-    @Override
-    public Map<String, Object> selectedParamsMap() {
-        return allParamsMap().entrySet().stream().filter(entry -> Objects.nonNull(entry.getValue())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
+  @JsonProperty("appointmentId")
+  private String appointmentId;
 
-    @Override
-    public String getId() {
-        return invoiceDataId;
-    }
+  public InvoiceDataModelApi(
+      Integer subtotalAmount,
+      Integer taxRate,
+      Integer totalAmount,
+      String description,
+      InvoiceStatus status,
+      String customerId,
+      String invoiceDataId,
+      String appointmentId) {
+    super(subtotalAmount, taxRate, totalAmount, description, status, customerId);
+    this.invoiceDataId = invoiceDataId;
+    this.appointmentId = appointmentId;
+  }
 
+  @Override
+  public Map<String, Object> allParamsMap() {
+    Map<String, Object> params = new HashMap<>();
+    params.put("subtotalAmount", this.getSubtotalAmount());
+    params.put("taxRate", this.getTaxRate());
+    params.put("totalAmount", this.getTotalAmount());
+    params.put("description", this.getDescription());
+    params.put("customerId", this.getCustomerId());
+    return params;
+  }
 
+  @Override
+  public Map<String, Object> selectedParamsMap() {
+    return allParamsMap().entrySet().stream()
+        .filter(entry -> Objects.nonNull(entry.getValue()))
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+  }
+
+  @Override
+  public String getId() {
+    return invoiceDataId;
+  }
 }

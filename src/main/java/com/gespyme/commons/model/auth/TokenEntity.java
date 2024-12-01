@@ -8,8 +8,7 @@ import lombok.Data;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 public class TokenEntity {
-    private String token;
-    private Boolean isValid;
-    private String userId;
-
+  private String token;
+  private Boolean isValid;
+  private String userId;
 }

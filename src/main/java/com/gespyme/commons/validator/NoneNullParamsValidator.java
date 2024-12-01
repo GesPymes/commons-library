@@ -6,15 +6,15 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class NoneNullParamsValidator<T extends Validable> implements FieldsValidator<T> {
-    private final ParamsValidator paramsValidator;
+  private final ParamsValidator paramsValidator;
 
-    @Override
-    public Validator getEnumValue() {
-        return Validator.ALL_PARAMS_NOT_NULL;
-    }
+  @Override
+  public Validator getEnumValue() {
+    return Validator.ALL_PARAMS_NOT_NULL;
+  }
 
-    @Override
-    public void isValid(T request) {
-        paramsValidator.validateNotNullParams(request.allParamsMap());
-    }
+  @Override
+  public void isValid(T request) {
+    paramsValidator.validateNotNullParams(request.allParamsMap());
+  }
 }

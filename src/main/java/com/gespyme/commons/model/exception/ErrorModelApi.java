@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class ErrorModelApi {
-    private String code;
-    private String description;
+  private String code;
+  private String description;
 }

@@ -1,51 +1,51 @@
-package com.gespyme.commons.model.invoice;
+package com.gespyme.commons.model.job;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gespyme.commons.exeptions.BadRequestException;
-import com.gespyme.commons.validator.Validable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @EqualsAndHashCode(callSuper = true)
-@SuperBuilder
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @NoArgsConstructor
-public class InvoiceDataFilterModelApi extends InvoiceDataBaseModelApi {
+public class JobFilterModelApi extends JobBaseModelApi {
+
+  @JsonProperty("employeeName")
+  private String employeeName;
+
   @JsonProperty("customerName")
   private String customerName;
 
-  public InvoiceDataFilterModelApi(
-      Integer subtotalAmount,
-      Integer taxRate,
-      Integer totalAmount,
-      String description,
-      InvoiceStatus status,
+  public JobFilterModelApi(
+      String calendarId,
       String customerId,
+      String employeeId,
+      Integer periodicity,
+      Boolean isPeriodic,
+      String description,
+      String employeeName,
       String customerName) {
-    super(subtotalAmount, taxRate, totalAmount, description, status, customerId);
+    super(calendarId, customerId, employeeId, periodicity, isPeriodic, description);
+    this.employeeName = employeeName;
     this.customerName = customerName;
   }
 
   @Override
   public Map<String, Object> allParamsMap() {
     Map<String, Object> params = new HashMap<>();
-    params.put("subtotalAmount", this.getSubtotalAmount());
-    params.put("taxRate", this.getTaxRate());
-    params.put("totalAmount", this.getTotalAmount());
+    params.put("employeeName", this.employeeName);
+    params.put("periodicity", this.getPeriodicity());
+    params.put("isPeriodic", this.getIsPeriodic());
     params.put("customerName", this.customerName);
     params.put("description", this.getDescription());
-    params.put("status", this.getStatus());
-    params.put("customerId", this.getCustomerId());
     return params;
   }
 
@@ -58,6 +58,6 @@ public class InvoiceDataFilterModelApi extends InvoiceDataBaseModelApi {
 
   @Override
   public String getId() {
-    throw new BadRequestException("Cannot filter by id from this endpoint");
+    throw new BadRequestException("Cannot filter by appointment id from this endpoint");
   }
 }

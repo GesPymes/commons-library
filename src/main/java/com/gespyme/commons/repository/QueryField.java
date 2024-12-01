@@ -5,6 +5,7 @@ import com.querydsl.core.BooleanBuilder;
 
 public interface QueryField {
 
-    String getFieldName();
-    void addToQuery(BooleanBuilder booleanBuilder, SearchCriteria searchCriteria);
+  String getFieldName();
+
+  void addToQuery(BooleanBuilder booleanBuilder, SearchCriteria searchCriteria);
 }

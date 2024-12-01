@@ -1,36 +1,31 @@
-package com.gespyme.commons.model.job;
+package com.gespyme.commons.model.invoice;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.gespyme.commons.exeptions.BadRequestException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 @Data
-@EqualsAndHashCode(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @SuperBuilder
-public class AppointmentFilterModelApi extends AppointmentBaseModelApi {
-  public AppointmentFilterModelApi(
-      AppointmentStatus status, LocalDateTime startDate, LocalDateTime endDate, String jobId) {
-    super(status, startDate, endDate, jobId);
+public class InvoiceOrderFilterModelApi extends InvoiceOrderBaseModelApi {
+
+  public InvoiceOrderFilterModelApi(InvoiceStatus status) {
+    super(status);
   }
 
   @Override
   public Map<String, Object> allParamsMap() {
     Map<String, Object> params = new HashMap<>();
     params.put("status", this.getStatus());
-    params.put("startDate", this.getStartDate());
-    params.put("endDate", this.getEndDate());
-    params.put("jobId", this.getJobId());
     return params;
   }
 
@@ -43,6 +38,6 @@ public class AppointmentFilterModelApi extends AppointmentBaseModelApi {
 
   @Override
   public String getId() {
-    throw new BadRequestException("Cannot filter by appointment id from this endpoint");
+    throw new BadRequestException("Cannot filter by id from this endpoint");
   }
 }

@@ -1,4 +1,4 @@
-package com.gespyme.commons.model.customer;
+package com.gespyme.commons.model.employee;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,26 +13,32 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @NoArgsConstructor
-public class CustomerModelApi extends CustomerBaseModelApi {
+public class EmployeeModelApi extends EmployeeBaseModelApi {
 
-  public CustomerModelApi(
+  @JsonProperty("employeeId")
+  private String employeeId;
+
+  @JsonProperty("userId")
+  private String userId;
+
+  public EmployeeModelApi(
       String name,
       String lastName,
+      String email,
       String address,
       String mobilePhone,
-      String email,
-      Boolean needsInvoice,
-      String customerId) {
-    super(name, lastName, address, mobilePhone, email, needsInvoice);
-    this.customerId = customerId;
+      String idNumber,
+      String socialSecurityNumber,
+      String userId,
+      String employeeId) {
+    super(name, lastName, email, address, mobilePhone, idNumber, socialSecurityNumber);
+    this.userId = userId;
+    this.employeeId = employeeId;
   }
-
-  @JsonProperty("customerId")
-  private String customerId;
 
   @JsonIgnore
   @Override
   public String getId() {
-    return customerId;
+    return employeeId;
   }
 }

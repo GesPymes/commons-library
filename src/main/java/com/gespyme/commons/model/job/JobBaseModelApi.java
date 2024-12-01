@@ -1,37 +1,37 @@
 package com.gespyme.commons.model.job;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gespyme.commons.validator.Validable;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.experimental.SuperBuilder;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class JobBaseModelApi implements Validable {
-    private String calendarId;
-    private String employeeId;
-    private Integer periodicity;
-    private boolean isPeriodic;
-    private String description;
 
-    @Override
-    public Map<String, Object> allParamsMap() {
-        Map<String, Object> params = new HashMap<>();
-        params.put("calendarId", this.calendarId);
-        params.put("employeeId", this.employeeId);
-        params.put("periodicity", this.periodicity);
-        params.put("isPeriodic", this.isPeriodic);
-        params.put("periodicity", this.periodicity);
-        params.put("description", this.description);
-        return params;
-    }
+  @JsonProperty("calendarId")
+  private String calendarId;
 
-    @Override
-    public Map<String, Object> selectedParamsMap() {
-        return allParamsMap().entrySet().stream().filter(entry -> Objects.nonNull(entry.getValue())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
+  @JsonProperty("customerId")
+  private String customerId;
+
+  @JsonProperty("employeeId")
+  private String employeeId;
+
+  @JsonProperty("periodicity")
+  private Integer periodicity;
+
+  @JsonProperty("isPeriodic")
+  private Boolean isPeriodic;
+
+  @JsonProperty("description")
+  private String description;
 }
