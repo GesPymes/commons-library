@@ -1,5 +1,6 @@
 package com.gespyme.commons.model.invoice;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
@@ -57,6 +58,7 @@ public class InvoiceDataModelApi extends InvoiceDataBaseModelApi {
   }
 
   @Override
+  @JsonIgnore
   public String getId() {
     return invoiceDataId;
   }

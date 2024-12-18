@@ -2,12 +2,11 @@ package com.gespyme.commons.model.job;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.gespyme.commons.exeptions.BadRequestException;
+import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
-import java.util.List;
 
 @Data
 @SuperBuilder
@@ -16,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class CalendarFilterModelApi extends CalendarBaseModelApi {
 
-  public CalendarFilterModelApi(String calendarName, List<String> users) {
+  public CalendarFilterModelApi(String calendarName, List<UserByCalendarModelApi> users) {
     super(calendarName, users);
   }
 

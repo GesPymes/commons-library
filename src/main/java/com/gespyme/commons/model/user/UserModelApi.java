@@ -1,15 +1,14 @@
 package com.gespyme.commons.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.gespyme.commons.validator.Validable;
-import lombok.Data;
-
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lombok.Data;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -19,6 +18,7 @@ public class UserModelApi implements Validable {
   private String email;
   private String password;
   private String role;
+  private String userName;
 
   @Override
   public Map<String, Object> allParamsMap() {
@@ -26,6 +26,7 @@ public class UserModelApi implements Validable {
     params.put("role", this.role);
     params.put("password", this.password);
     params.put("email", this.email);
+    params.put("userName", this.userName);
     return params;
   }
 
@@ -37,6 +38,7 @@ public class UserModelApi implements Validable {
   }
 
   @Override
+  @JsonIgnore
   public String getId() {
     return userId;
   }

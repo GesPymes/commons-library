@@ -1,22 +1,22 @@
 package com.gespyme.commons.model.job;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @NoArgsConstructor
+@SuperBuilder
 public class JobModelApi extends JobBaseModelApi {
 
   @JsonProperty("jobId")
@@ -25,20 +25,32 @@ public class JobModelApi extends JobBaseModelApi {
   public JobModelApi(
       String calendarId,
       String customerId,
+      String customerName,
+      String customerLastName,
+      String employeeName,
+      String employeeLastName,
       String employeeId,
       Integer periodicity,
       Boolean isPeriodic,
       String description,
       String jobId) {
-    super(calendarId, customerId, employeeId, periodicity, isPeriodic, description);
+    super(
+        calendarId,
+        customerId,
+        customerName,
+        customerLastName,
+        employeeName,
+        employeeLastName,
+        employeeId,
+        periodicity,
+        isPeriodic,
+        description);
     this.jobId = jobId;
   }
 
   @Override
   public Map<String, Object> allParamsMap() {
     Map<String, Object> params = new HashMap<>();
-    params.put("customerId", this.getCustomerId());
-    params.put("employeeId", this.getEmployeeId());
     params.put("periodicity", this.getPeriodicity());
     params.put("isPeriodic", this.getIsPeriodic());
     params.put("description", this.getDescription());
@@ -53,6 +65,7 @@ public class JobModelApi extends JobBaseModelApi {
   }
 
   @Override
+  @JsonIgnore
   public String getId() {
     return jobId;
   }

@@ -6,15 +6,13 @@ import com.gespyme.commons.validator.Validable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
-
-import java.time.LocalDateTime;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @NoArgsConstructor
 @AllArgsConstructor
+@SuperBuilder
 public abstract class JobBaseModelApi implements Validable {
 
   @JsonProperty("calendarId")
@@ -22,6 +20,18 @@ public abstract class JobBaseModelApi implements Validable {
 
   @JsonProperty("customerId")
   private String customerId;
+
+  @JsonProperty("customerName")
+  private String customerName;
+
+  @JsonProperty("customerLastName")
+  private String customerLastName;
+
+  @JsonProperty("employeeName")
+  private String employeeName;
+
+  @JsonProperty("employeeLastName")
+  private String employeeLastName;
 
   @JsonProperty("employeeId")
   private String employeeId;

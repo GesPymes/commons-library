@@ -1,11 +1,10 @@
 package com.gespyme.commons.validator;
 
 import com.gespyme.commons.exeptions.BadRequestException;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ValidatorService<T> {

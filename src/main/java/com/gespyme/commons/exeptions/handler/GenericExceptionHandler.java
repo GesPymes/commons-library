@@ -3,12 +3,11 @@ package com.gespyme.commons.exeptions.handler;
 import com.gespyme.commons.exeptions.*;
 import com.gespyme.commons.model.exception.ErrorModelApi;
 import io.jsonwebtoken.ExpiredJwtException;
+import java.util.Objects;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import java.util.Objects;
 
 @ControllerAdvice
 public class GenericExceptionHandler {

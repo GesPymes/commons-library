@@ -5,11 +5,9 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.DatePath;
 import com.querydsl.core.types.dsl.SimpleExpression;
 import com.querydsl.core.types.dsl.StringPath;
-import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import org.springframework.stereotype.Component;
 
 @Component
 public class PredicateBuilder<T> {

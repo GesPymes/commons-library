@@ -3,48 +3,49 @@ package com.gespyme.commons.model.job;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gespyme.commons.exeptions.BadRequestException;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
-
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @NoArgsConstructor
+@SuperBuilder
 public class JobFilterModelApi extends JobBaseModelApi {
-
-  @JsonProperty("employeeName")
-  private String employeeName;
-
-  @JsonProperty("customerName")
-  private String customerName;
 
   public JobFilterModelApi(
       String calendarId,
       String customerId,
+      String customerName,
+      String customerLastName,
+      String employeeName,
+      String employeeLastName,
       String employeeId,
       Integer periodicity,
       Boolean isPeriodic,
-      String description,
-      String employeeName,
-      String customerName) {
-    super(calendarId, customerId, employeeId, periodicity, isPeriodic, description);
-    this.employeeName = employeeName;
-    this.customerName = customerName;
+      String description) {
+    super(
+        calendarId,
+        customerId,
+        customerName,
+        customerLastName,
+        employeeName,
+        employeeLastName,
+        employeeId,
+        periodicity,
+        isPeriodic,
+        description);
   }
 
   @Override
   public Map<String, Object> allParamsMap() {
     Map<String, Object> params = new HashMap<>();
-    params.put("employeeName", this.employeeName);
     params.put("periodicity", this.getPeriodicity());
     params.put("isPeriodic", this.getIsPeriodic());
-    params.put("customerName", this.customerName);
     params.put("description", this.getDescription());
     return params;
   }

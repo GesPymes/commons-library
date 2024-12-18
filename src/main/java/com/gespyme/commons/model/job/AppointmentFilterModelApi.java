@@ -2,16 +2,15 @@ package com.gespyme.commons.model.job;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.gespyme.commons.exeptions.BadRequestException;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

@@ -1,12 +1,11 @@
 package com.gespyme.commons.validator;
 
 import com.gespyme.commons.exeptions.BadRequestException;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ParamsValidator {
@@ -24,10 +23,6 @@ public class ParamsValidator {
   }
 
   private boolean validateParam(Map.Entry<String, Object> param) throws BadRequestException {
-    // TODO para fechas poner @DateTimeFormat y si no que lance excepcion y se coge con el
-    // controller advice
-    // TODO para numeros @Min(value = 1, message = "El valor debe ser mayor que cero")
-    // ESto combinado con jacskon ignore unknown
     if (param.getValue() instanceof String) {
       return ((String) param.getValue()).isBlank();
     }

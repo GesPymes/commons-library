@@ -3,16 +3,15 @@ package com.gespyme.commons.model.job;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gespyme.commons.validator.Validable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
@@ -25,7 +24,7 @@ public abstract class CalendarBaseModelApi implements Validable {
   private String calendarName;
 
   @JsonProperty("users")
-  private List<String> users;
+  private List<UserByCalendarModelApi> users;
 
   @Override
   public Map<String, Object> allParamsMap() {
