@@ -31,7 +31,7 @@ public class JobModelApi extends JobBaseModelApi {
       String employeeLastName,
       String employeeId,
       Integer periodicity,
-      Boolean isPeriodic,
+      Boolean periodic,
       String description,
       String jobId) {
     super(
@@ -43,7 +43,7 @@ public class JobModelApi extends JobBaseModelApi {
         employeeLastName,
         employeeId,
         periodicity,
-        isPeriodic,
+            periodic,
         description);
     this.jobId = jobId;
   }
@@ -52,7 +52,7 @@ public class JobModelApi extends JobBaseModelApi {
   public Map<String, Object> allParamsMap() {
     Map<String, Object> params = new HashMap<>();
     params.put("periodicity", this.getPeriodicity());
-    params.put("isPeriodic", this.getIsPeriodic());
+    params.put("periodic", this.getPeriodic());
     params.put("description", this.getDescription());
     return params;
   }

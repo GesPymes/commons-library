@@ -39,8 +39,8 @@ public abstract class JobBaseModelApi implements Validable {
   @JsonProperty("periodicity")
   private Integer periodicity;
 
-  @JsonProperty("isPeriodic")
-  private Boolean isPeriodic;
+  @JsonProperty("periodic")
+  private Boolean periodic;
 
   @JsonProperty("description")
   private String description;

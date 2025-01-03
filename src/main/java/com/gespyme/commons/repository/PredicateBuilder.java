@@ -1,10 +1,8 @@
 package com.gespyme.commons.repository;
 
 import com.gespyme.commons.repository.criteria.SearchCriteria;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.DatePath;
-import com.querydsl.core.types.dsl.SimpleExpression;
-import com.querydsl.core.types.dsl.StringPath;
+import com.querydsl.core.types.dsl.*;
+
 import java.time.LocalDateTime;
 import java.util.Collection;
 import org.springframework.stereotype.Component;
@@ -21,9 +19,9 @@ public class PredicateBuilder<T> {
       case IN:
         return path.in((Collection<T>) searchCriteria.getValue());
       case BEFORE:
-        return ((DatePath<LocalDateTime>) path).before((LocalDateTime) searchCriteria.getValue());
+        return ((DateTimePath<LocalDateTime>) path).before((LocalDateTime) searchCriteria.getValue());
       case AFTER:
-        return ((DatePath<LocalDateTime>) path).after((LocalDateTime) searchCriteria.getValue());
+        return ((DateTimePath<LocalDateTime>) path).after((LocalDateTime) searchCriteria.getValue());
     }
     return null;
   }

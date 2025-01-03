@@ -3,6 +3,8 @@ package com.gespyme.commons.model.job;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gespyme.commons.exeptions.BadRequestException;
+
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -16,6 +18,8 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 public class JobFilterModelApi extends JobBaseModelApi {
+  String startDate;
+  String endDate;
 
   public JobFilterModelApi(
       String calendarId,
@@ -26,8 +30,10 @@ public class JobFilterModelApi extends JobBaseModelApi {
       String employeeLastName,
       String employeeId,
       Integer periodicity,
-      Boolean isPeriodic,
-      String description) {
+      Boolean periodic,
+      String description,
+      String startDate,
+      String endDate) {
     super(
         calendarId,
         customerId,
@@ -37,16 +43,20 @@ public class JobFilterModelApi extends JobBaseModelApi {
         employeeLastName,
         employeeId,
         periodicity,
-        isPeriodic,
+        periodic,
         description);
+    this.startDate = startDate;
+    this.endDate = endDate;
   }
 
   @Override
   public Map<String, Object> allParamsMap() {
     Map<String, Object> params = new HashMap<>();
     params.put("periodicity", this.getPeriodicity());
-    params.put("isPeriodic", this.getIsPeriodic());
+    params.put("periodic", this.getPeriodic());
     params.put("description", this.getDescription());
+    params.put("startDate", this.getStartDate());
+    params.put("endDate", this.getEndDate());
     return params;
   }
 
